@@ -3,7 +3,7 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-//Register
+//REGISTER
 router.post("/register", (req, res) => {
   bcrypt.hash(req.body.password, 10, (err, hash) => {
     if (err) {
@@ -47,7 +47,7 @@ router.post("/login", (req, res) => {
                 isAdmin: user.isAdmin,
               },
               process.env.JWT_KEY,
-              { expiresIn: "1h" }
+              { expiresIn: "5d" }
             );
             const { password, ...other } = user._doc;
             res.status(200).json({ ...other, accessToken });
