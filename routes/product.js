@@ -57,6 +57,7 @@ router.delete("/:id", verifyTokenAndAdmin, (req, res) => {
 });
 
 //GET PRODUCT
+
 router.get("/find/:id", (req, res) => {
   Product.findById(req.params.id)
     .then((product) => {
