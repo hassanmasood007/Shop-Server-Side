@@ -1,12 +1,12 @@
 const User = require("../models/User");
 const {
-  verifyToken,
   verifyTokenAndAuthorization,
   verifyTokenAndAdmin,
 } = require("./VerifyToken");
 
 const router = require("express").Router();
 
+//UPDATE
 router.put("/:id", verifyTokenAndAuthorization, (req, res) => {
   if (req.body.password) {
     bcrypt.hash(req.body.password, 10, (err, hash) => {
@@ -70,9 +70,10 @@ router.get("/find/:id", verifyTokenAndAdmin, (req, res) => {
 router.get("/", verifyTokenAndAdmin, async (req, res) => {
   const query = req.query.new;
   try {
-    const users = query
-      ? await User.find().sort({ _id: -1 }).limit(1)
-      : await User.find();
+    const users =
+      query === "true"
+        ? await User.find().sort({ _id: -1 }).limit(1)
+        : await User.find();
     res.status(200).json(users);
   } catch (err) {
     res.status(500).json({
