@@ -32,7 +32,7 @@ router.put("/:id", verifyTokenAndAdmin, (req, res) => {
     { new: true }
   )
     .then((updatedProduct) => {
-      res.status(200).json(updatedUser);
+      res.status(200).json(updatedProduct);
     })
     .catch((err) => {
       res.status(500).json({
@@ -43,7 +43,7 @@ router.put("/:id", verifyTokenAndAdmin, (req, res) => {
 
 //Delete
 router.delete("/:id", verifyTokenAndAdmin, (req, res) => {
-  User.findByIdAndDelete(req.params.id)
+  Product.findByIdAndDelete(req.params.id)
     .then(() => {
       res.status(200).json({
         message: "Product has been deleted...",
