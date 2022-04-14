@@ -23,6 +23,7 @@ router.post("/", verifyTokenAndAdmin, (req, res) => {
 });
 
 //UPDATE
+
 router.put("/:id", verifyTokenAndAdmin, (req, res) => {
   Product.findByIdAndUpdate(
     req.params.id,
